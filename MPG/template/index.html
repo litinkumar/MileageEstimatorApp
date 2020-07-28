@@ -1,0 +1,36 @@
+{%extends 'Header-2.html' %}
+{%block content%}
+<!--Main-->
+<br>
+<h3>Please enter the following to get an estimation:</h3>
+<br>
+{% if scoreVal %}
+<form method ="post" enctype="multipart/form-data" action="updateDatabase"> 
+{% else %}
+    
+<form method ="post" enctype="multipart/form-data" action="predictMPG">
+{% endif %}
+    {% csrf_token %}
+    <div class="col-md-4 col-sm-4"><label for="fname">Cylinders:</label> </div> <input name="cylinderVal" type="text" value={{temp.Cylinders}}><br><br>
+    <div class="col-md-4 col-sm-4"><label for="lname">Displacement:</label> </div> <input type="text" id="lname" name="dispVal" value={{temp.Displacement}}><br><br>
+    <div class="col-md-4 col-sm-4"><label for="fname">Horsepower:</label> </div> <input type="text" id="fname" name="hrsPwrVal" value={{temp.Horsepower}}><br><br>
+    <div class="col-md-4 col-sm-4"><label for="lname">Weight:</label> </div> <input type="text" id="lname" name="weightVal" value={{temp.Weight}}><br><br>
+    <div class="col-md-4 col-sm-4"><label for="fname">Acceleration:</label></div>  <input type="text" id="fname" name="accVal" value={{temp.Accelration}}><br><br>
+    <div class="col-md-4 col-sm-4"><label for="lname">Model:</label> </div> <input type="text" id="lname" name="modelVal" value={{temp.Model}}><br><br>
+    <div class="col-md-4 col-sm-4"><label for="lname">Origin:</label> </div> <input type="number" id="lname" name="originVal" value={{temp.Origin}}><br><br>
+    <br>
+
+{% if scoreVal %}
+<h1>The mpg score is {{scoreVal}}</h1>
+{% endif %}
+
+    {% if scoreVal %}
+    <h3> Do you want to write this to the Database?</h3>
+    <input type="hidden" id="lname" name="mpgVal" value={{scoreVal}}>
+    <input type="Submit" value="Submit"></div>
+    {% else %}
+    <input type="Submit" value="Submit"></div>
+    {% endif %}
+</form>
+<br>
+{%endblock%}
